@@ -56,6 +56,12 @@
         guardarTareas(tareas);
         renderizarTareas();
       }
-  
+
+let boton = document.getElementById("boton");
+
+boton.onclick = function() {
+    agregarTarea();
+};
+
       // Renderizar tareas al cargar la página
       renderizarTareas();
