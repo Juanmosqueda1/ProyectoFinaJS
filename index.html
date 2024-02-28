@@ -11,6 +11,19 @@
         <h1>Carrito</h1>
         <hr>
 
+        <template id="template-card">
+          <div class="col-12 mb-2 col-md-4">
+            <div class="card">
+                <img src="" alt="" class="card-img-top" width="100px" height="250px">
+              <div class="card-body">
+                <h5>Titulo</h5>
+                <p>precio</p>
+                <button class="btn btn-dark" >Comprar</button>
+              </div>
+            </div>
+          </div>
+        </template>
+
 <table class="table">
         <thead>
           <tr>
@@ -59,18 +72,6 @@
       </tr>
     </template>
 
-    <template id="template-card">
-      <div class="col-12 mb-2 col-md-4">
-        <div class="card">
-            <img src="" alt="" class="card-img-top">
-          <div class="card-body">
-            <h5>Titulo</h5>
-            <p>precio</p>
-            <button class="btn btn-dark">Comprar</button>
-          </div>
-        </div>
-      </div>
-    </template>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./main.js"></script>

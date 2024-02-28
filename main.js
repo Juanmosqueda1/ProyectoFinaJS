@@ -1,19 +1,19 @@
-const cards = document.getElementById('cards')
-const items = document.getElementById('items')
-const footer = document.getElementById('footer')
-const templateCard = document.getElementById('template-card').content
-const templateFooter = document.getElementById('template-footer').content
-const templateCarrito = document.getElementById('template-carrito').content
-const fragment = document.createDocumentFragment()
-let carrito = {}
+const cards = document.getElementById('cards');
+const items = document.getElementById('items');
+const footer = document.getElementById('footer');
+const templateCard = document.getElementById('template-card').content;
+const templateFooter = document.getElementById('template-footer').content;
+const templateCarrito = document.getElementById('template-carrito').content;
+const fragment = document.createDocumentFragment();
+let carrito = {};
 
-const accessKey = "NoFklq3XB7WFrWjxObPywCWEE6ieFlC_BkdsUEP-pLo"
-const objects = ["coffee","pizza","water","watermelon","mango","beer",] 
+const accessKey = "NoFklq3XB7WFrWjxObPywCWEE6ieFlC_BkdsUEP-pLo";
+const objects = ["food", "fruits"];
 const apiUrl = `https://api.unsplash.com/photos/random?query=${objects.join(',')}&count=6&client_id=${accessKey}`;
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
-    if(localStorage.getItem('carrito')) {
+    if (localStorage.getItem('carrito')) {
         carrito = JSON.parse(localStorage.getItem('carrito'));
         pintarCarrito();
     }
@@ -45,7 +45,7 @@ const fetchApi = async () => {
         const res = await fetch(apiUrl);
         if (!res.ok) throw new Error(`Error en la solicitud: ${res.statusText}`);
         const data = await res.json();
-        return data.map(item => item.urls.full);
+        return data.map(item => item.urls.small);
     } catch (error) {
         console.error("No se pudo obtener la foto", error);
     }
@@ -55,7 +55,7 @@ const pintarCards = (data, imageUrls) => {
     data.forEach((producto, index) => {
         const card = templateCard.cloneNode(true);
         card.querySelector('h5').textContent = producto.title;
-        card.querySelector('p').textContent = producto.precio;
+        card.querySelector('p').textContent = `${producto.precio.toFixed(2)}`; // Formatear el precio
         card.querySelector('.btn-dark').dataset.id = producto.id;
         card.querySelector('img').src = imageUrls[index];
         fragment.appendChild(card);
